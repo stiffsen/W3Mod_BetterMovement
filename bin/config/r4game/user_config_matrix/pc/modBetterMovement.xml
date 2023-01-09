@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UserConfig>
+    <Group id="BetterMovementStraight" displayName="Mods.BetterMovement.straight">
+		<PresetsArray>
+			<Preset id="0" displayName="Vanilla"> 
+				<Entry varId="TurnAdjustTimer" value="0.3"/>
+				<Entry varId="SpeedMultiplier" value="3"/>
+				<Entry varId="MaxTurnAngle" value="45"/>
+			</Preset>
+			<Preset id="1" displayName="Fast"> 
+				<Entry varId="TurnAdjustTimer" value="0.2"/>
+				<Entry varId="SpeedMultiplier" value="6.0"/>
+				<Entry varId="MaxTurnAngle" value="90"/>
+			</Preset>
+			<Preset id="2" displayName="Faster"> 
+				<Entry varId="TurnAdjustTimer" value="0.15"/>
+				<Entry varId="SpeedMultiplier" value="7.0"/>
+				<Entry varId="MaxTurnAngle" value="100"/>
+			</Preset>
+			<Preset id="3" displayName="Fastest"> 
+				<Entry varId="TurnAdjustTimer" value="0.1"/>
+				<Entry varId="SpeedMultiplier" value="8.5"/>
+				<Entry varId="MaxTurnAngle" value="120"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var  id="TurnAdjustTimer" displayName="BetterMovement_turnAdjustmentTime" displayType="SLIDER;0.0;1.0;100"/>
+			<Var  id="SpeedMultiplier" displayName="BetterMovement_speedMultiplier" displayType="SLIDER;3.0;13.0;20"/>
+			<Var  id="MaxTurnAngle" displayName="BetterMovement_maxTurnAngle" displayType="SLIDER;45.0;180.0;135"/>
+        </VisibleVars>
+    </Group>
+	<Group id="BetterMovementQuick" displayName="Mods.BetterMovement.quick">
+		<PresetsArray>
+			<Preset id="0" displayName="Vanilla"> 
+				<Entry varId="QuickTurnWalkEnabled" value="true"/>
+				<Entry varId="QuickTurnWalkThreshold" value="0.8"/>
+				<Entry varId="QuickTurnWalkSpeedReduction" value="0.5"/>
+			</Preset>
+			<Preset id="1" displayName="Fast"> 
+				<Entry varId="QuickTurnWalkEnabled" value="true"/>
+				<Entry varId="QuickTurnWalkThreshold" value="0.85"/>
+				<Entry varId="QuickTurnWalkSpeedReduction" value="0.38"/>
+			</Preset>
+			<Preset id="2" displayName="Faster"> 
+				<Entry varId="QuickTurnWalkEnabled" value="true"/>
+				<Entry varId="QuickTurnWalkThreshold" value="0.88"/>
+				<Entry varId="QuickTurnWalkSpeedReduction" value="0.30"/>
+			</Preset>
+			<Preset id="3" displayName="Fastest"> 
+				<Entry varId="QuickTurnWalkEnabled" value="true"/>
+				<Entry varId="QuickTurnWalkThreshold" value="0.90"/>
+				<Entry varId="QuickTurnWalkSpeedReduction" value="0.2"/>
+			</Preset>
+
+		</PresetsArray>
+		<VisibleVars>
+			<Var  id="QuickTurnWalkEnabled" displayName="BetterMovement_quickTurnWalkEnabled" displayType="TOGGLE"/>
+			<Var  id="QuickTurnWalkThreshold" displayName="BetterMovement_quickTurnWalkThreshold" displayType="SLIDER;0.8;1.0;20"/>
+			<Var  id="QuickTurnWalkSpeedReduction" displayName="BetterMovement_quickTurnWalkSpeedReduction" displayType="SLIDER;0.0;0.5;50"/>
+		</VisibleVars>
+	</Group>
+	<Group id="BetterMovementSharp" displayName="Mods.BetterMovement.sharp">
+		<PresetsArray>
+			<Preset id="0" displayName="Vanilla"> 
+				<Entry varId="SharpTurnDetection" value="true"/>
+				<Entry varId="SharpTurnDetectionThreshold" value="0.7"/>
+				<Entry varId="SharpTurnDetectionTimer" value="0.25"/>
+				<Entry varId="DirectionSwitchTimeDelta" value="1.0"/>
+				<Entry varId="DirectionSwitchEndLeniency" value="0.3"/>
+				<Entry varId="DirectionSwitchForceWalk" value="true"/>
+				<Entry varId="SharpTurnDetection" value="true"/>
+				<Entry varId="DirectionSwitchSpeedMultiplier" value="0.5"/>
+			</Preset>
+			<Preset id="1" displayName="Fast"> 
+				<Entry varId="SharpTurnDetection" value="true"/>
+				<Entry varId="SharpTurnDetectionThreshold" value="0.75"/>
+				<Entry varId="SharpTurnDetectionTimer" value="0.3"/>
+				<Entry varId="DirectionSwitchTimeDelta" value="0.8"/>
+				<Entry varId="DirectionSwitchEndLeniency" value="0.33"/>
+				<Entry varId="DirectionSwitchForceWalk" value="true"/>
+				<Entry varId="SharpTurnDetection" value="true"/>
+				<Entry varId="DirectionSwitchSpeedMultiplier" value="0.5"/>
+			</Preset>
+			<Preset id="2" displayName="Faster"> 
+				<Entry varId="SharpTurnDetection" value="true"/>
+				<Entry varId="SharpTurnDetectionThreshold" value="0.80"/>
+				<Entry varId="SharpTurnDetectionTimer" value="0.3"/>
+				<Entry varId="DirectionSwitchTimeDelta" value="0.7"/>
+				<Entry varId="DirectionSwitchEndLeniency" value="0.35"/>
+				<Entry varId="DirectionSwitchForceWalk" false="true"/>
+				<Entry varId="DirectionSwitchSpeedMultiplier" value="0.7"/>
+			</Preset>
+			<Preset id="3" displayName="Fastest"> 
+				<Entry varId="SharpTurnDetection" value="true"/>
+				<Entry varId="SharpTurnDetectionThreshold" value="0.85"/>
+				<Entry varId="SharpTurnDetectionTimer" value="0.35"/>
+				<Entry varId="DirectionSwitchTimeDelta" value="0.6"/>
+				<Entry varId="DirectionSwitchEndLeniency" value="0.4"/>
+				<Entry varId="DirectionSwitchForceWalk" value="false"/>
+				<Entry varId="DirectionSwitchSpeedMultiplier" value="0.85"/>
+			</Preset>
+		</PresetsArray>
+		<VisibleVars>
+			<Var  id="SharpTurnDetection" displayName="BetterMovement_sharpTurnDetection" displayType="TOGGLE"/>
+			<Var  id="SharpTurnDetectionThreshold" displayName="BetterMovement_sharpTurnDetectionThreshold" displayType="SLIDER;0.7;1.0;30"/>
+			<Var  id="SharpTurnDetectionTimer" displayName="BetterMovement_sharpTurnDetectionTimer" displayType="SLIDER;0.25;1.0;75"/>
+			<Var  id="DirectionSwitchTimeDelta" displayName="BetterMovement_directionSwitchTimeDelta" displayType="SLIDER;0.0;1.0;100"/>
+			<Var  id="DirectionSwitchEndLeniency" displayName="BetterMovement_directionSwitchEndLeniency" displayType="SLIDER;0.3;1.0;70"/>
+			<Var  id="DirectionSwitchForceWalk" displayName="BetterMovement_directionSwitchForceWalk" displayType="TOGGLE"/>
+			<Var  id="DirectionSwitchSpeedMultiplier" displayName="BetterMovement_directionSwitchSpeedMultiplier" displayType="SLIDER;0.2;1.0;80"/>
+		</VisibleVars>
+	</Group>
+	<Group id="BetterMovementMisc" displayName="Mods.BetterMovement.misc">
+		<PresetsArray id="0" displayName="Vanilla">
+			<Entry varId="RunInCombatToggle" value="false"/>
+		</PresetsArray>
+		<VisibleVars>
+			<Var  id="RunInCombatToggle" displayName="BetterMovement_runInCombatToggle" displayType="TOGGLE"/>
+			<Var  id="RealTime"  displayName="BetterMovement_RealTime" displayType="TOGGLE"/>
+			<Var  id="VersionNr" displayName="" displayType="SLIDER;0;50;50000" visibilityCondition="hideAlways"/>
+		</VisibleVars>
+	</Group>
+	<Group id="BetterMovementSpeed" displayName="Mods.BetterMovement.speed">
+		<VisibleVars>
+			<Var  id="SprintSpeedMultiplier" displayName="BetterMovement_sprintSpeedMultiplier" displayType="SLIDER;1.0;2.0;100"/>
+			<Var  id="SwimSpeedMultiplier" displayName="BetterMovement_swimSpeedMultiplier" displayType="SLIDER;1.0;5.0;400"/>
+			<Var  id="WalkSpeedMultiplier" displayName="BetterMovement_walkSpeedMultiplier" displayType="SLIDER;1.0;1.5;50" />
+		</VisibleVars>
+	</Group>
+</UserConfig>

@@ -7,24 +7,24 @@
 2117591004|d8d600b2||Drehgeschwindigkeitsfaktor
 2117591005|51d44268||Maximaler Drehwinkel
 2117591006|a805d54d||Basis
-2117591007|bc28d6d5||Direkt
-2117591008|5ee329ef||Schnelle Drehungen
+2117591007|bc28d6d5||Stillstehend
+2117591008|5ee329ef||Scharfe Richtungsänderungen
 2117591009|4d5f7647||Verschiedenes
 2117591010|4d5a5797||Banking
 2117591011|5eccfff2||Schnelle Drehungen
 2117591012|136ac1f7||Schneller
 2117591013|59ed7d7c||Am schnellsten
 2117591014|b1bde141||Echtzeit-Drehung (Überschreibt eine Vielzahl anderer Einstellungen)
-2117591015|be3a1a04||Bei scharfen Richtungsänderungen auf Bewegungsgeschwindigkeit verlangsamen
-2117591016|e1a3ce6e||Schwellwert um Geh-Animation zu starten (als Winkel relativ zu pi)
+2117591015|be3a1a04||Geschwindigkeitsreduktion bei scharfen Richtungsänderungen
+2117591016|e1a3ce6e||Schwellwert um Geh-Animation zu starten (pi)
 2117591017|0383f1e9||Prozentuale Geschwindigkeitsreduktion währenddessen
-2117591018|1828c354||Detektion schneller Richtungsänderungen ein- und ausschalten (banking)
-2117591019|51fd9f97||Schwellwert für die Detektion von scharfen Richtungsänderungen (als Winkel relativ zu pi)
-2117591020|17c43871||Zeitspanne für Detektion von scharfen Richtungsänderungen (Hoher Wert=Weniger Detektion)
-2117591021|4c9836ce||Zeitspanne in Sekunden in der die Geschwindigkeit nach einer scharfen Kurve reduziert wird
-2117591022|783fc8b1||Toleranz der Richtungsänderung: Wenn kleiner als Schwellwert (Winkel relativ zu pi), wird Richtungsänderungswunsch ignoriert
-2117591023|a54cc4f7||Gehgeschwindigkeit erzwingen wenn die Richtung geändert wird (Deaktivier Faktor unten)
-2117591024|3bc288cb||Multipliziert Bewegungsgeschwindigkeit während scharfen Richtungsänderungen mit diesem Faktor
+2117591018|1828c354||Detektion schneller Richtungsänderungen ein- und ausschalten
+2117591019|51fd9f97||Schwellwert zur Detektion scharfer Richtungsänderungen (pi)
+2117591020|17c43871||Detektionszeit scharfe Richtungsänderungen (Hoch=Unsensitiv)
+2117591021|4c9836ce||Dauer(s) Geschwindigkeitsreduktion nach scharfer Drehung
+2117591022|783fc8b1||Toleranzbereich der Richtungsänderung (pi)
+2117591023|a54cc4f7||Gehgeschwindigkeit bei Richtungsänderung (Deaktiviert Faktor)
+2117591024|3bc288cb||Geschwindigkeitsreduktion bei scharfen Richtungsänderungen
 2117591025|21f4456c||Diese Regeln werden immer angewendet, wenn die Richtungsänderungen innerhalb des maximalen Richtungsänderungswinkels der letzten Bewegung ist
 2117591026|1dd6f0bb||Diese Regeln werden angewendet, wenn die Kamera schnell gedreht wird
 2117591027|1ded1ab8||Diese Regeln werden angewendet, wenn Geralt's Bewegungsrichtung sich schnell ändert

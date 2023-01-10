@@ -1,0 +1,35 @@
+;meta[language=de]
+; id      |key(hex)|key(str)| text
+2117591000|4d5f8b0c||Mods
+2117591001|f6045a3a||Better Movement
+2117591002|0e0703cd||Rotationsanpassungszeit in Sekunden
+2117591003|738cd922||Rennen im Kampf
+2117591004|d8d600b2||Drehgeschwindigkeitsfaktor
+2117591005|51d44268||Maximaler Drehwinkel
+2117591006|a805d54d||Basis
+2117591007|bc28d6d5||Direkt
+2117591008|5ee329ef||Schnelle Drehungen
+2117591009|4d5f7647||Verschiedenes
+2117591010|4d5a5797||Banking
+2117591011|5eccfff2||Schnelle Drehungen
+2117591012|136ac1f7||Schneller
+2117591013|59ed7d7c||Am schnellsten
+2117591014|b1bde141||Echtzeit-Drehung (Überschreibt eine Vielzahl anderer Einstellungen)
+2117591015|be3a1a04||Bei scharfen Richtungsänderungen auf Bewegungsgeschwindigkeit verlangsamen
+2117591016|e1a3ce6e||Schwellwert um Geh-Animation zu starten (als Winkel relativ zu pi)
+2117591017|0383f1e9||Prozentuale Geschwindigkeitsreduktion währenddessen
+2117591018|1828c354||Detektion schneller Richtungsänderungen ein- und ausschalten (banking)
+2117591019|51fd9f97||Schwellwert für die Detektion von scharfen Richtungsänderungen (als Winkel relativ zu pi)
+2117591020|17c43871||Zeitspanne für Detektion von scharfen Richtungsänderungen (Hoher Wert=Weniger Detektion)
+2117591021|4c9836ce||Zeitspanne in Sekunden in der die Geschwindigkeit nach einer scharfen Kurve reduziert wird
+2117591022|783fc8b1||Toleranz der Richtungsänderung: Wenn kleiner als Schwellwert (Winkel relativ zu pi), wird Richtungsänderungswunsch ignoriert
+2117591023|a54cc4f7||Gehgeschwindigkeit erzwingen wenn die Richtung geändert wird (Deaktivier Faktor unten)
+2117591024|3bc288cb||Multipliziert Bewegungsgeschwindigkeit während scharfen Richtungsänderungen mit diesem Faktor
+2117591025|21f4456c||Diese Regeln werden immer angewendet, wenn die Richtungsänderungen innerhalb des maximalen Richtungsänderungswinkels der letzten Bewegung ist
+2117591026|1dd6f0bb||Diese Regeln werden angewendet, wenn die Kamera schnell gedreht wird
+2117591027|1ded1ab8||Diese Regeln werden angewendet, wenn Geralt's Bewegungsrichtung sich schnell ändert
+2117591028|f84b7fca||Schnell
+2117591029|5ee6da4c||Geschwindigkeitsfaktor
+2117591030|a08a8fd8|| Sprint Geschwindigkeitsfaktor (Außerhalb des Kampfes)
+2117591031|b73dc82a|| Sprint-Schwimm Geschwindigkeitsfaktor (Außerhalb des Kampfes)
+2117591032|3837bec9|| Gehgeschwindigkeitsfaktor (Im Kampf)

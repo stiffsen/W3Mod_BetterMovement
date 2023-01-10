@@ -1,0 +1,35 @@
+;meta[language=fr]
+; id      |key(hex)|key(str)| text
+2117591000|4d5f8b0c||Mods
+2117591001|f6045a3a||Better Movement
+2117591002|0e0703cd||Turn Adjustment Time in seconds
+2117591003|738cd922||Run in Combat
+2117591004|d8d600b2||Turn Speed Multiplier
+2117591005|51d44268||Maximum turn angle
+2117591006|a805d54d||Vanilla
+2117591007|bc28d6d5||Straight
+2117591008|5ee329ef||Sharp Turns
+2117591009|4d5f7647||Miscellaneous
+2117591010|4d5a5797||Banking
+2117591011|5eccfff2||Quick Turns
+2117591012|136ac1f7||Faster
+2117591013|59ed7d7c||Fastest
+2117591014|b1bde141||Real-Time Turning (overrides but does not overwrite all other settings)
+2117591015|be3a1a04||Slow to walk when making turns quickly
+2117591016|e1a3ce6e||Threshold for triggering walk in pi
+2117591017|0383f1e9||Percentage reduction in speed during
+2117591018|1828c354||Toggles detection of sharp turns (banking)
+2117591019|51fd9f97||Threshold for triggering a sharp turn check in pi
+2117591020|17c43871||Timer for sharp turn detection (higher=less detection)
+2117591021|4c9836ce||Time in seconds that you are slowed after a sharp turn
+2117591022|783fc8b1||Direction switch leniency: If within x(pi), direction switch ends early
+2117591023|a54cc4f7||Forced walk speed on direction switch (disables multiplier below)
+2117591024|3bc288cb||Sets movement speed to speed*x during a sharp turn
+2117591025|21f4456c||These rules apply whenever your turn is within Maximum Turn Angle of your last movement
+2117591026|1dd6f0bb||These rules apply whenever you turn the camera rapidly
+2117591027|1ded1ab8||These rules apply when Geralt's direction changes rapidly
+2117591028|f84b7fca||Fast
+2117591029|5ee6da4c||Speed Multipliers
+2117591030|a08a8fd8|| Out of combat sprint speed multiplier
+2117591031|b73dc82a|| Out of combat sprinting swim multiplier
+2117591032|3837bec9|| Combat walk speed multiplier

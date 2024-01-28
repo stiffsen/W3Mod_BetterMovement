@@ -134,6 +134,7 @@ class CR4IngameMenu extends CR4MenuBase
 	private var m_fxShowCloudModal      : CScriptedFlashFunction;
 	private var m_fxCloseGalaxySignInModalWindow: CScriptedFlashFunction;
 	private var m_fxSetDLSSIsSupported	: CScriptedFlashFunction;
+	private var m_fxSetXESSIsSupported	: CScriptedFlashFunction;
 	private var m_fxSetRTEnabled		: CScriptedFlashFunction;
 	private var m_fxHideErrorWindow		: CScriptedFlashFunction;
 	
@@ -235,6 +236,7 @@ class CR4IngameMenu extends CR4MenuBase
 		m_fxShowCloudModal = m_flashModule.GetMemberFlashFunction("ShowCloudModal");
 		m_fxCloseGalaxySignInModalWindow = m_flashModule.GetMemberFlashFunction("closeGalaxySignInDialog");
 		m_fxSetDLSSIsSupported = m_flashModule.GetMemberFlashFunction("DLSSIsSupported");
+		m_fxSetXESSIsSupported = m_flashModule.GetMemberFlashFunction("XESSIsSupported");
 		m_fxSetRTEnabled = m_flashModule.GetMemberFlashFunction("RTEnabled");
 		m_fxHideErrorWindow = m_flashModule.GetMemberFlashFunction("hideErrorHandlingWindow");
 
@@ -420,6 +422,11 @@ class CR4IngameMenu extends CR4MenuBase
 		}
 	}
 
+	event OnRefreshHDR()
+	{
+		PopulateMenuData();
+	}
+
 	event OnRefresh()
 	{
 		var audioLanguageName 	: string;
@@ -559,6 +566,8 @@ class CR4IngameMenu extends CR4MenuBase
 		var controlsFeedbackModule : CR4HudModuleControlsFeedback;
 		var interactionModule : CR4HudModuleInteractions;
 		var hud : CR4ScriptedHud;
+
+		theGame.SetHDRMenuActive(false);
 		
 		SaveChangedSettings();
 		
@@ -794,6 +803,7 @@ class CR4IngameMenu extends CR4MenuBase
 				break;
 			case IGMActionType_Options:
 				DLSSSupported();
+				XESSSupported();
 				RTEnabled();
 				
 				developerOptions = m_flashValueStorage.CreateTempFlashArray();
@@ -871,9 +881,27 @@ class CR4IngameMenu extends CR4MenuBase
 		}
 	}
 
-	event  OnShowOptionSubmenu( actionType:int, menuTag:int ) : void
+	event  OnShowSaveGameMenu() : void
+	{
+		LogChannel('UI', "OnShowSaveGameMenu");
+	}
+
+	event  OnShowLoadGameMenu() : void
+	{
+		theGame.RefreshCrossProgressionSavesList();
+	}
+
+	event  OnShowOptionSubmenu( actionType:int, menuTag:int, id:string ) : void
 	{
 		updateDLSSGOptionChanged();
+		if (id == "settings_hdr")
+		{
+			theGame.SetHDRMenuActive(true);
+		}
+		else
+		{
+			theGame.SetHDRMenuActive(false);
+		}
 	}
 	
 	public function HandleLoadGameFailed():void
@@ -1197,6 +1225,13 @@ class CR4IngameMenu extends CR4MenuBase
 		DLSSIsSupported = theGame.GetIsDLSSSupported();
 		m_fxSetDLSSIsSupported.InvokeSelfTwoArgs( FlashArgBool(DLSSIsSupported), FlashArgUInt(NameToFlashUInt('AAMode') ));				
 	}
+
+	public function XESSSupported()
+	{
+		var XESSIsSupported : bool;
+		XESSIsSupported = theGame.GetIsXESSSupported();
+		m_fxSetXESSIsSupported.InvokeSelfTwoArgs( FlashArgBool(XESSIsSupported), FlashArgUInt(NameToFlashUInt('AAMode') ));				
+	}
 	
 	public function RTEnabled()
 	{ 
@@ -1220,10 +1255,16 @@ class CR4IngameMenu extends CR4MenuBase
 				
 		groupName = mInGameConfigWrapper.GetGroupName(groupId);
 
+		if (groupName == 'Graphics' && optionName == 'AAMode' && theGame.GetIsXESSSupported() == false)
+		{
+			showNotification(GetPlatformLocString("option_warning_xess_support"));
+		}
+
 		if (groupName == 'Graphics' && optionName == 'AAMode' && theGame.GetIsDLSSSupported() == false)
 		{
 			showNotification(GetPlatformLocString("option_warning_dlss_support"));
 		}
+
 		
 		
 		
@@ -1407,6 +1448,11 @@ class CR4IngameMenu extends CR4MenuBase
 			}
 		}
 		
+
+		if (optionName == 'WidescreenCutscene' && optionValue == "true")
+		{
+			theGame.GetGuiManager().ShowUserDialog(0, "", "message_widescreen_cutscene_use_cachets_disclaimer", UDB_Ok);
+		}
 		
 		
 		if (optionName == 'MinimapDuringFocusCombat')
@@ -1461,6 +1507,16 @@ class CR4IngameMenu extends CR4MenuBase
 				thePlayer.SetLeftStickSprint(true);
 			else
 				thePlayer.SetLeftStickSprint(false);
+		}
+
+		
+		
+		if (optionName == 'AutoApplyBladeOils')
+		{
+			if ( optionValue == "true" )
+				thePlayer.SetAutoApplyOils(true);
+			else
+				thePlayer.SetAutoApplyOils(false);
 		}
 		
 		
@@ -1602,6 +1658,11 @@ class CR4IngameMenu extends CR4MenuBase
 			updateRTROptionChanged();
 		}
 
+		if (optionName == 'AllowMotionBlur')
+		{
+			updateMotionBlurOptionChanged(optionValue == "true");
+		}
+
 		
 		
 		
@@ -1669,6 +1730,23 @@ class CR4IngameMenu extends CR4MenuBase
 		{
 			theGame.UpdateCrossProgressionValue( optionValue );
 		}
+	}
+
+	private function updateMotionBlurOptionChanged(enabled:bool):void
+	{
+		var dataObject : CScriptedFlashObject;
+		var dataArray : CScriptedFlashArray;
+
+		dataArray = m_flashValueStorage.CreateTempFlashArray();
+
+		dataObject = m_flashValueStorage.CreateTempFlashObject();
+		dataObject.SetMemberFlashUInt( "tag", NameToFlashUInt('MotionBlurIntensity') );
+		dataObject.SetMemberFlashBool( "disabled", !enabled);
+		dataArray.PushBackFlashObject(dataObject);
+		
+		m_flashValueStorage.SetFlashArray( "options.update_disabled", dataArray );
+		
+		theGame.GetGuiManager().ForceProcessFlashStorage();
 	}
 
 	private function setLocksOnPresetChanged():void
@@ -1753,8 +1831,13 @@ class CR4IngameMenu extends CR4MenuBase
 		dataArray.PushBackFlashObject(dataObject);
 
 		dataObject = m_flashValueStorage.CreateTempFlashObject();
+		dataObject.SetMemberFlashUInt( "tag", NameToFlashUInt('XESSQuality') );
+		dataObject.SetMemberFlashBool( "disabled", !theGame.GetXESSEnabled());
+		dataArray.PushBackFlashObject(dataObject);
+
+		dataObject = m_flashValueStorage.CreateTempFlashObject();
 		dataObject.SetMemberFlashUInt( "tag", NameToFlashUInt('DynamicResolutionScaling') );
-		dataObject.SetMemberFlashBool( "disabled", theGame.GetDLSSEnabled() || theGame.GetDLSSGEnabled());
+		dataObject.SetMemberFlashBool( "disabled", theGame.GetDLSSEnabled() || theGame.GetDLSSGEnabled()  || theGame.GetXESSEnabled());
 		dataArray.PushBackFlashObject(dataObject);
 
 		dataObject = m_flashValueStorage.CreateTempFlashObject();
@@ -1950,6 +2033,8 @@ class CR4IngameMenu extends CR4MenuBase
 	{
 		var graphicChangesPending:bool;
 		var hud : CR4ScriptedHud;
+
+		theGame.SetHDRMenuActive(false);
 		
 		if (inGameConfigBufferedWrapper.AnyBufferedVarHasTag('refreshViewport'))
 		{
@@ -1977,6 +2062,8 @@ class CR4IngameMenu extends CR4MenuBase
 		var radialMenuModule : CR4HudModuleRadialMenu;
 		var confirmResult : int;
 		var flashObject : CScriptedFlashObject;
+
+		theGame.SetHDRMenuActive(false);
 		
 		hud = (CR4ScriptedHud)(theGame.GetHud());
 		overlayPopupRef = (CR4OverlayPopup) theGame.GetGuiManager().GetPopup('OverlayPopup');
@@ -3058,6 +3145,24 @@ class CR4IngameMenu extends CR4MenuBase
 		{
 			return 'input_overlap5';
 		}
+
+		else if (mInGameConfigWrapper.DoVarHasTag('PCInput', keybindName, 'input_overlap_potion1'))
+		{
+			return 'input_overlap_potion1';
+		}
+		else if (mInGameConfigWrapper.DoVarHasTag('PCInput', keybindName, 'input_overlap_potion2'))
+		{
+			return 'input_overlap_potion2';
+		}
+		else if (mInGameConfigWrapper.DoVarHasTag('PCInput', keybindName, 'input_overlap_potion3'))
+		{
+			return 'input_overlap_potion3';
+		}
+		else if (mInGameConfigWrapper.DoVarHasTag('PCInput', keybindName, 'input_overlap_potion4'))
+		{
+			return 'input_overlap_potion4';
+		}
+		
 		
 		return '';
 	}
@@ -3120,6 +3225,17 @@ class CR4IngameMenu extends CR4MenuBase
 		newSettingString = newKeybindValue + ";IK_None"; 
 		mInGameConfigWrapper.SetVarValue('PCInput', keybindTag, newSettingString);
 		SendKeybindData();
+
+		
+		if(keybindTag == 'DrinkPotion1')
+			OnChangeKeybind('DrinkPotion1Hold', newKeybindValue);
+		else if(keybindTag == 'DrinkPotion2')
+			OnChangeKeybind('DrinkPotion2Hold', newKeybindValue);
+		else if(keybindTag == 'DrinkPotion3')
+			OnChangeKeybind('DrinkPotion3Hold', newKeybindValue);
+		else if(keybindTag == 'DrinkPotion4')
+			OnChangeKeybind('DrinkPotion4Hold', newKeybindValue);
+		
 	}
 	
 	event  OnSmartKeybindEnabledChanged(value:bool):void
